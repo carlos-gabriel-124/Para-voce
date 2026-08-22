@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <!-- Codificação -->
+    <meta charset="UTF-8">
+
+    <!-- Responsividade -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título -->
+    <title>Nossa História ❤️</title>
+
+
+    <style>
+
+        /* =====================================================
+           CONFIGURAÇÕES GERAIS
+           ===================================================== */
+
+        * {
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+        }
+
+
+        body {
+            min-height: 100vh;
+
+            background: #f8f1e7;
+
+            color: #604b46;
+
+            font-family: Georgia, serif;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+           ===================================================== */
+
+        .sidebar {
+
+            position: fixed;
+
+            left: 0;
+
+            top: 0;
+
+            width: 260px;
+
+            height: 100vh;
+
+            padding: 40px 25px;
+
+            background: #fffaf3;
+
+            border-right: 1px solid #eadbd0;
+
+            display: flex;
+
+            flex-direction: column;
+
+            z-index: 100;
+        }
+
+
+        /* Logo */
+
+        .logo {
+
+            text-align: center;
+
+            font-size: 30px;
+
+            margin-bottom: 60px;
+        }
+
+
+        .logo span {
+
+            color: #d9959d;
+        }
+
+
+        /* =====================================================
+           MENU
+           ===================================================== */
+
+        .menu {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+        }
+
+
+        .menu button {
+
+            border: none;
+
+            background: transparent;
+
+            padding: 16px;
+
+            border-radius: 15px;
+
+            text-align: left;
+
+            color: #806b64;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition:
+                background 0.3s ease,
+                transform 0.3s ease;
+        }
+
+
+        .menu button:hover {
+
+            background: #f5e4df;
+
+            transform: translateX(5px);
+        }
+
+
+        .menu button.ativo {
+
+            background: #edd1d0;
+
+            color: #604b46;
+        }
+
+
+        /* =====================================================
+           RODAPÉ DA SIDEBAR
+           ===================================================== */
+
+        .sidebar-footer {
+
+            margin-top: auto;
+
+            text-align: center;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 12px;
+
+            color: #a68d84;
+        }
+
+
+        /* =====================================================
+           CONTEÚDO
+           ===================================================== */
+
+        .conteudo {
+
+            margin-left: 260px;
+
+            min-height: 100vh;
+
+            padding: 70px;
+        }
+
+
+        /* =====================================================
+           SEÇÕES
+           ===================================================== */
+
+        .secao {
+
+            display: none;
+
+            animation: aparecer 0.6s ease;
+        }
+
+
+        .secao.ativa {
+
+            display: block;
+        }
+
+
+        /* =====================================================
+           TÍTULO
+           ===================================================== */
+
+        .titulo {
+
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+
+        .titulo .coracao {
+
+            font-size: 40px;
+
+            color: #d9959d;
+        }
+
+
+        .titulo h1 {
+
+            font-size: 42px;
+
+            font-weight: normal;
+
+            margin: 15px 0;
+        }
+
+
+        .titulo p {
+
+            color: #806b64;
+
+            font-size: 17px;
+        }
+
+
+        /* =====================================================
+           CARTA DA HISTÓRIA
+           ===================================================== */
+
+        .carta-historia {
+
+            max-width: 900px;
+
+            margin: auto;
+
+            padding: 55px;
+
+            background: #fffaf3;
+
+            border-radius: 30px;
+
+            box-shadow:
+                0 20px 60px rgba(80, 50, 40, 0.09);
+
+            line-height: 2;
+
+            font-size: 18px;
+
+            color: #735e58;
+        }
+
+
+        .carta-historia p {
+
+            margin-bottom: 25px;
+        }
+
+
+        .final-historia {
+
+            text-align: center;
+
+            color: #d0838e;
+
+            font-size: 22px;
+
+            margin-top: 40px;
+
+            margin-bottom: 0 !important;
+        }
+
+
+        /* =====================================================
+           GALERIA
+           ===================================================== */
+
+        .galeria {
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .foto {
+
+            height: 350px;
+
+            overflow: hidden;
+
+            border-radius: 25px;
+
+            background: #fffaf3;
+
+            box-shadow:
+                0 15px 40px rgba(80, 50, 40, 0.10);
+        }
+
+
+        .foto img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            transition:
+                transform 0.6s ease;
+        }
+
+
+        .foto:hover img {
+
+            transform: scale(1.08);
+        }
+
+
+        /* =====================================================
+           ANIMAÇÃO
+           ===================================================== */
+
+        @keyframes aparecer {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(20px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =====================================================
+           RESPONSIVIDADE
+           ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+
+                width: 210px;
+            }
+
+
+            .conteudo {
+
+                margin-left: 210px;
+
+                padding: 40px 25px;
+            }
+
+
+            .carta-historia {
+
+                padding: 35px;
+            }
+
+
+            .galeria {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .sidebar {
+
+                position: relative;
+
+                width: 100%;
+
+                height: auto;
+
+                border-right: none;
+
+                border-bottom: 1px solid #eadbd0;
+
+                padding: 20px;
+            }
+
+
+            .logo {
+
+                margin-bottom: 20px;
+            }
+
+
+            .menu {
+
+                flex-direction: row;
+
+                overflow-x: auto;
+            }
+
+
+            .menu button {
+
+                white-space: nowrap;
+            }
+
+
+            .sidebar-footer {
+
+                display: none;
+            }
+
+
+            .conteudo {
+
+                margin-left: 0;
+
+                padding: 35px 20px;
+            }
+
+
+            .titulo h1 {
+
+                font-size: 30px;
+            }
+
+
+            .carta-historia {
+
+                padding: 28px 22px;
+
+                font-size: 16px;
+
+                line-height: 1.8;
+            }
+
+
+            .galeria {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside class="sidebar">
+
+        <!-- Logo -->
+        <div class="logo">
+            Nós <span>♡</span>
+        </div>
+
+
+        <!-- Menu -->
+        <nav class="menu">
+
+            <!-- História -->
+            <button
+                class="menu-btn ativo"
+                data-alvo="historia"
+            >
+                ♡ Nossa história
+            </button>
+
+
+            <!-- Galeria -->
+            <button
+                class="menu-btn"
+                data-alvo="galeria"
+            >
+                ♡ Galeria de fotos
+            </button>
+
+
+            <!-- Surpresa -->
+            <button
+                id="botaoSurpresa"
+            >
+                ♡ Surpresa
+            </button>
+
+        </nav>
+
+
+        <!-- Rodapé -->
+        <div class="sidebar-footer">
+
+            Feito especialmente para você ❤️
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         CONTEÚDO
+         ===================================================== -->
+
+    <main class="conteudo">
+
+
+        <!-- =================================================
+             HISTÓRIA
+             ================================================= -->
+
+        <section
+            id="historia"
+            class="secao ativa"
+        >
+
+            <div class="titulo">
+
+                <div class="coracao">
+                    ♡
+                </div>
+
+                <h1>
+                    Nossa História
+                </h1>
+
+                <p>
+                    Tudo aquilo que estamos construindo juntos.
+                </p>
+
+            </div>
+
+
+            <!-- Carta -->
+
+            <article class="carta-historia">
+
+                <p>
+                    Talvez a nossa história não tenha começado
+                    exatamente como uma história de amor escrita
+                    em um livro.
+                </p>
+
+
+                <p>
+                    Ela começou de um jeito simples, com momentos
+                    que talvez naquele instante nem imaginássemos
+                    o quanto se tornariam importantes para nós.
+                </p>
+
+
+                <p>
+                    Com o passar do tempo, fomos nos conhecendo,
+                    descobrindo um ao outro e construindo algo que
+                    foi muito além de simplesmente estar juntos.
+                </p>
+
+
+                <p>
+                    Foram as conversas, as risadas, os momentos
+                    difíceis, os momentos felizes e todas aquelas
+                    pequenas coisas que, juntas, começaram a formar
+                    a nossa história.
+                </p>
+
+
+                <p>
+                    Hoje, quando olho para tudo aquilo que já
+                    vivemos, percebo que cada momento teve sua
+                    importância.
+                </p>
+
+
+                <p>
+                    Cada lembrança ajudou a construir aquilo que
+                    somos hoje.
+                </p>
+
+
+                <p>
+                    Eu não quero que a nossa história seja apenas
+                    sobre o começo.
+                </p>
+
+
+                <p>
+                    Quero que ela seja sobre tudo aquilo que ainda
+                    vamos viver.
+                </p>
+
+
+                <p>
+                    Quero continuar conhecendo você, continuar
+                    aprendendo com você e continuar estando ao seu
+                    lado nos dias bons e também nos dias difíceis.
+                </p>
+
+
+                <p>
+                    Quero que a gente cresça juntos, que nossos
+                    sonhos encontrem um caminho em comum e que
+                    nunca deixemos de lembrar por que escolhemos
+                    ficar um ao lado do outro.
+                </p>
+
+
+                <p>
+                    E, acima de tudo, quero que a nossa história
+                    tenha propósito.
+                </p>
+
+
+                <p>
+                    Que Deus esteja presente em cada decisão,
+                    em cada sonho e em cada passo que dermos.
+                </p>
+
+
+                <p>
+                    Que, se for da vontade dEle, possamos construir
+                    uma vida juntos, uma família e um futuro baseado
+                    em amor, respeito, companheirismo e fé.
+                </p>
+
+
+                <p>
+                    Talvez eu não saiba exatamente o que o futuro
+                    reserva para nós.
+                </p>
+
+
+                <p>
+                    Mas sei de uma coisa:
+                </p>
+
+
+                <p class="final-historia">
+
+                    Eu quero continuar escrevendo
+                    essa história com você. ❤️
+
+                </p>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- =================================================
+             GALERIA
+             ================================================= -->
+
+        <section
+            id="galeria"
+            class="secao"
+        >
+
+            <div class="titulo">
+
+                <div class="coracao">
+                    ♡
+                </div>
+
+                <h1>
+                    Nossos momentos
+                </h1>
+
+                <p>
+                    Cada fotografia guarda uma lembrança.
+                </p>
+
+            </div>
+
+
+            <!-- Fotos -->
+
+            <div class="galeria">
+
+
+                <div class="foto">
+
+                    <img
+                        src="foto1.jpg"
+                        alt="Momento especial"
+                    >
+
+                </div>
+
+
+                <div class="foto">
+
+                    <img
+                        src="foto2.jpg"
+                        alt="Momento especial"
+                    >
+
+                </div>
+
+
+                <div class="foto">
+
+                    <img
+                        src="foto3.jpg"
+                        alt="Momento especial"
+                    >
+
+                </div>
+
+
+                <div class="foto">
+
+                    <img
+                        src="foto4.jpg"
+                        alt="Momento especial"
+                    >
+
+                </div>
+
+
+                <div class="foto">
+
+                    <img
+                        src="foto5.jpg"
+                        alt="Momento especial"
+                    >
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+        // Seleciona todos os botões normais do menu.
+        const botoes =
+            document.querySelectorAll(".menu-btn");
+
+
+        // Seleciona todas as seções.
+        const secoes =
+            document.querySelectorAll(".secao");
+
+
+        // Percorre cada botão.
+        botoes.forEach(botao => {
+
+            // Detecta quando o botão é clicado.
+            botao.addEventListener("click", () => {
+
+                // Descobre qual seção deve aparecer.
+                const alvo =
+                    botao.dataset.alvo;
+
+
+                // Remove o estado ativo de todos.
+                botoes.forEach(item => {
+
+                    item.classList.remove("ativo");
+
+                });
+
+
+                // Ativa o botão clicado.
+                botao.classList.add("ativo");
+
+
+                // Esconde todas as seções.
+                secoes.forEach(secao => {
+
+                    secao.classList.remove("ativa");
+
+                });
+
+
+                // Mostra a seção selecionada.
+                document
+                    .getElementById(alvo)
+                    .classList.add("ativa");
+
+            });
+
+        });
+
+
+        // Seleciona o botão surpresa.
+        const botaoSurpresa =
+            document.getElementById("botaoSurpresa");
+
+
+        // Verifica se o botão existe.
+        if (botaoSurpresa) {
+
+            // Detecta o clique.
+            botaoSurpresa.addEventListener("click", () => {
+
+                // Exibe o alerta.
+                alert(
+                    "Tudo isso é pra você meu amor....."
+                );
+
+
+                // Depois do OK, vai para a surpresa.
+                window.location.href =
+                    "surpresa.html";
+
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>

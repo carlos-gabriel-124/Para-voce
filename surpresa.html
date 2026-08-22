@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <!-- Codificação -->
+    <meta charset="UTF-8">
+
+    <!-- Responsividade -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título -->
+    <title>Para Você ❤️</title>
+
+
+    <style>
+
+        /* =====================================================
+           CONFIGURAÇÕES GERAIS
+           ===================================================== */
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background: #eadbc9;
+
+            color: #604b46;
+
+            font-family: Georgia, serif;
+
+            overflow-x: hidden;
+
+        }
+
+
+        /* =====================================================
+           CONTAINER DAS PÉTALAS
+           ===================================================== */
+
+        #petalas {
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            overflow: hidden;
+
+            z-index: 1;
+
+        }
+
+
+        /* =====================================================
+           PÉTALA
+           ===================================================== */
+
+        .petala {
+
+            position: absolute;
+
+            top: -40px;
+
+            width: 16px;
+
+            height: 23px;
+
+            background: #f4b6c2;
+
+            border-radius:
+                80% 20% 80% 20%;
+
+            opacity: 0.75;
+
+            box-shadow:
+                0 2px 8px
+                rgba(170, 100, 110, 0.15);
+
+            animation-name: queda;
+
+            animation-timing-function: linear;
+
+            animation-iteration-count: infinite;
+
+        }
+
+
+        /* =====================================================
+           ANIMAÇÃO DA PÉTALA
+           ===================================================== */
+
+        @keyframes queda {
+
+            0% {
+
+                transform:
+                    translateY(-50px)
+                    translateX(0)
+                    rotate(0deg);
+
+                opacity: 0;
+
+            }
+
+
+            10% {
+
+                opacity: 0.8;
+
+            }
+
+
+            50% {
+
+                transform:
+                    translateY(50vh)
+                    translateX(80px)
+                    rotate(180deg);
+
+            }
+
+
+            100% {
+
+                transform:
+                    translateY(110vh)
+                    translateX(-70px)
+                    rotate(360deg);
+
+                opacity: 0.1;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CONTAINER CENTRAL
+           ===================================================== */
+
+        .container {
+
+            position: relative;
+
+            z-index: 5;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 60px 20px;
+
+        }
+
+
+        /* =====================================================
+           CARTA
+           ===================================================== */
+
+        .carta {
+
+            width: min(700px, 92vw);
+
+            min-height: 220px;
+
+            padding: 55px;
+
+            background: #fffaf3;
+
+            border-radius: 35px;
+
+            box-shadow:
+                0 25px 80px
+                rgba(80, 50, 40, 0.18);
+
+            text-align: center;
+
+            animation:
+                entradaCarta 1.4s ease;
+
+        }
+
+
+        /* Flor */
+
+        .flor {
+
+            font-size: 45px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* =====================================================
+           TEXTO
+           ===================================================== */
+
+        #texto {
+
+            font-size: 20px;
+
+            line-height: 2;
+
+            color: #735e58;
+
+            overflow-wrap: break-word;
+
+            white-space: pre-wrap;
+
+        }
+
+
+        /* Cursor */
+
+        #cursor {
+
+            color: #d9959d;
+
+            font-size: 20px;
+
+            animation:
+                piscar 0.7s infinite;
+
+        }
+
+
+        /* =====================================================
+           CURSOR PISCANDO
+           ===================================================== */
+
+        @keyframes piscar {
+
+            0%,
+            50% {
+
+                opacity: 1;
+
+            }
+
+
+            51%,
+            100% {
+
+                opacity: 0;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           ENTRADA DA CARTA
+           ===================================================== */
+
+        @keyframes entradaCarta {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    scale(0.85)
+                    translateY(30px);
+
+            }
+
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    scale(1)
+                    translateY(0);
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CELULAR
+           ===================================================== */
+
+        @media (max-width: 600px) {
+
+            .carta {
+
+                width: 92vw;
+
+                padding: 35px 25px;
+
+                border-radius: 25px;
+
+            }
+
+
+            #texto {
+
+                font-size: 17px;
+
+                line-height: 1.8;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         PÉTALAS
+         ===================================================== -->
+
+    <div id="petalas"></div>
+
+
+    <!-- =====================================================
+         CONTEÚDO CENTRAL
+         ===================================================== -->
+
+    <main class="container">
+
+        <div class="carta">
+
+            <!-- Flor decorativa -->
+            <div class="flor">
+                🌷
+            </div>
+
+
+            <!-- Texto digitado pelo JavaScript -->
+            <p id="texto"></p>
+
+
+            <!-- Cursor -->
+            <span id="cursor">|</span>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script>
+
+        // =====================================================
+        // TEXTO DA SURPRESA
+        // =====================================================
+
+        // Texto que será digitado automaticamente.
+        const mensagem = `Meu amor,
+
+Eu queria criar alguma coisa que fosse somente nossa.
+
+Algo que pudesse guardar um pouco daquilo que existe entre nós, dos momentos que vivemos e, principalmente, daquilo que ainda queremos viver.
+
+Talvez esse site seja simples, mas cada detalhe dele foi pensado com carinho, porque eu queria criar algo que tivesse a nossa essência. Não queria simplesmente fazer uma página bonita. Queria criar uma pequena lembrança de nós dois, de tudo que estamos construindo e de tudo que ainda está por vir.
+
+Quando penso na nossa história, não penso somente no que já aconteceu. Penso no futuro.
+
+Penso em nós dois crescendo juntos, aprendendo juntos, enfrentando as dificuldades juntos e comemorando cada conquista que vier.
+
+Penso no dia em que o nosso relacionamento dará mais um passo.
+
+No nosso noivado.
+
+No momento em que vamos olhar um para o outro e perceber que aquilo que começou como um sentimento se transformou em um propósito ainda maior.
+
+Penso no nosso casamento, no dia em que poderemos dizer que escolhemos um ao outro não apenas para viver momentos bonitos, mas para dividir a vida.
+
+Quero construir nossas coisas com você.
+
+Quero ter nosso cantinho, nossas lembranças, nossos planos, nossas conquistas e até aquelas pequenas coisas do dia a dia que talvez ninguém mais entenda, mas que para nós terão um significado enorme.
+
+Quero que exista um lugar que seja nosso.
+
+Um lugar onde possamos chegar depois de um dia difícil, conversar, rir, descansar e simplesmente saber que estamos em casa.
+
+Quero construir uma vida ao seu lado, passo a passo.
+
+Não quero apenas imaginar um futuro bonito. Quero trabalhar por ele com você.
+
+Quero que nossos sonhos deixem de ser apenas sonhos e se transformem em planos, e que nossos planos, com o tempo, se transformem em realidade.
+
+E quero que Deus esteja presente em tudo isso.
+
+Que Ele seja o centro das nossas decisões, que nos dê sabedoria para enfrentar os momentos difíceis e que nos permita continuar caminhando juntos com amor, respeito, paciência e fé.
+
+Quero que nosso relacionamento seja mais do que apenas estar juntos.
+
+Quero que seja companheirismo.
+
+Quero que seja cuidado.
+
+Quero que seja confiança.
+
+Quero que seja escolha.
+
+A escolha de permanecer, de conversar, de compreender, de crescer e de construir.
+
+Porque amar alguém não significa apenas viver os dias bons.
+
+Significa também segurar a mão um do outro quando as coisas não estiverem fáceis e lembrar que existe um propósito maior por trás de tudo aquilo que estamos construindo.
+
+E é isso que eu quero com você.
+
+Quero viver os dias simples e os dias extraordinários.
+
+Quero conhecer novos lugares com você, criar novas lembranças, tirar novas fotos, comemorar novas conquistas e olhar para trás algum dia percebendo o quanto conseguimos construir juntos.
+
+Quero olhar para a nossa história e perceber que cada etapa teve seu significado.
+
+O começo.
+
+O namoro.
+
+O crescimento.
+
+O nosso noivado.
+
+O nosso casamento.
+
+A nossa casa.
+
+A nossa família.
+
+E todos os capítulos que vierem depois.
+
+Não sei exatamente como será cada detalhe do nosso futuro, mas sei com quem eu gostaria de vivê-lo.
+
+Com você.
+
+Esse site é apenas uma pequena representação de tudo isso.
+
+Porque por trás de cada foto, cada palavra e cada detalhe existe uma vontade muito maior: continuar construindo a nossa história.
+
+Hoje eu escrevo essas palavras.
+
+Amanhã, quero que a gente esteja vivendo tudo aquilo que elas representam.
+
+Quero que um dia possamos olhar para trás e lembrar de quando tudo ainda estava começando, quando tínhamos apenas sonhos e planos, e perceber que conseguimos transformar tudo isso em uma vida que construímos juntos.
+
+Que o nosso amor continue crescendo.
+
+Que nossos sonhos continuem se encontrando.
+
+Que Deus continue guiando os nossos passos.
+
+E que, em cada nova fase, a gente continue escolhendo um ao outro.
+
+Porque eu não quero apenas viver uma história de amor com você.
+
+Eu quero construir uma vida com você.
+
+Quero noivar com você.
+
+Quero me casar com você.
+
+Quero ter nossas coisas, nosso lar, nossos sonhos e nossas conquistas.
+
+Quero viver tudo aquilo que ainda está esperando por nós.
+
+E, acima de tudo, quero continuar escrevendo essa história ao seu lado.
+
+Eu te amo, meu amor. ❤️
+
+E isso aqui é apenas o começo.
+❤️`;
+
+
+        // =====================================================
+        // ELEMENTOS
+        // =====================================================
+
+        // Seleciona o local onde o texto será escrito.
+        const texto =
+            document.getElementById("texto");
+
+
+        // Seleciona o cursor.
+        const cursor =
+            document.getElementById("cursor");
+
+
+        // Seleciona o container das pétalas.
+        const petalas =
+            document.getElementById("petalas");
+
+
+        // =====================================================
+        // DIGITAÇÃO
+        // =====================================================
+
+        // Guarda a posição atual do texto.
+        let indice = 0;
+
+
+        // Velocidade base da digitação.
+        const velocidade = 45;
+
+
+        // Função responsável por digitar.
+        function digitar() {
+
+            // Verifica se ainda existem caracteres.
+            if (indice < mensagem.length) {
+
+                // Adiciona um caractere.
+                texto.textContent +=
+                    mensagem.charAt(indice);
+
+
+                // Avança para o próximo caractere.
+                indice++;
+
+
+                // Pequena variação de velocidade.
+                const variacao =
+                    Math.random() * 30;
+
+
+                // Agenda o próximo caractere.
+                setTimeout(
+                    digitar,
+                    velocidade + variacao
+                );
+
+            } else {
+
+                // Quando terminar,
+                // o cursor para de piscar.
+                cursor.style.animation =
+                    "none";
+
+                // Esconde o cursor depois de terminar.
+                setTimeout(() => {
+
+                    cursor.style.display =
+                        "none";
+
+                }, 1200);
+
+            }
+
+        }
+
+
+        // =====================================================
+        // PÉTALAS
+        // =====================================================
+
+        // Define a quantidade de pétalas.
+        const quantidade = 40;
+
+
+        // Cria as pétalas.
+        for (
+            let i = 0;
+            i < quantidade;
+            i++
+        ) {
+
+            // Cria uma div.
+            const petala =
+                document.createElement("div");
+
+
+            // Adiciona a classe CSS.
+            petala.classList.add("petala");
+
+
+            // Define posição horizontal aleatória.
+            petala.style.left =
+                Math.random() * 100 + "%";
+
+
+            // Define duração aleatória.
+            petala.style.animationDuration =
+                (6 + Math.random() * 8) + "s";
+
+
+            // Define atraso aleatório.
+            petala.style.animationDelay =
+                (Math.random() * 8) + "s";
+
+
+            // Define tamanho aleatório.
+            const tamanho =
+                0.6 + Math.random() * 0.8;
+
+
+            petala.style.scale =
+                tamanho;
+
+
+            // Adiciona a pétala na tela.
+            petalas.appendChild(petala);
+
+        }
+
+
+        // =====================================================
+        // INÍCIO DA ANIMAÇÃO
+        // =====================================================
+
+        // Espera a carta aparecer antes de começar a escrever.
+        setTimeout(() => {
+
+            digitar();
+
+        }, 1200);
+
+    </script>
+
+</body>
+
+</html>
