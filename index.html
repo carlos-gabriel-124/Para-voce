@@ -1,330 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <!-- Define a codificação para aceitar acentos e caracteres especiais -->
-    <meta charset="UTF-8">
-
-    <!-- Faz o site funcionar corretamente em celulares -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Título da aba do navegador -->
-    <title>Para Você ❤️</title>
-
-    <style>
-
-        /* =====================================================
-           CONFIGURAÇÕES GERAIS
-           ===================================================== */
-
-        /* Remove margens e espaçamentos padrão */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Configura o corpo da página */
-        body {
-            min-height: 100vh;
-
-            /* Fundo branco-creme */
-            background: #f8f1e7;
-
-            /* Fonte principal */
-            font-family: Georgia, serif;
-
-            /* Cor padrão dos textos */
-            color: #604b46;
-        }
-
-        /* =====================================================
-           CONTAINER PRINCIPAL
-           ===================================================== */
-
-        .inicio {
-            min-height: 100vh;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 60px;
-
-            padding: 50px;
-        }
-
-        /* =====================================================
-           FOTO
-           ===================================================== */
-
-        .foto-container {
-            width: 360px;
-
-            height: 520px;
-
-            overflow: hidden;
-
-            border-radius: 35px;
-
-            box-shadow:
-                0 20px 50px rgba(80, 50, 40, 0.18);
-
-            animation: aparecerFoto 1.2s ease;
-        }
-
-        /* Imagem */
-        .foto-principal {
-            width: 100%;
-
-            height: 100%;
-
-            object-fit: cover;
-
-            transition: transform 0.6s ease;
-        }
-
-        /* Zoom suave ao passar o mouse */
-        .foto-container:hover .foto-principal {
-            transform: scale(1.04);
-        }
-
-        /* =====================================================
-           CARD DA MENSAGEM
-           ===================================================== */
-
-        .mensagem {
-            width: 500px;
-
-            padding: 55px;
-
-            background: #fffaf3;
-
-            border-radius: 35px;
-
-            box-shadow:
-                0 20px 60px rgba(80, 50, 40, 0.10);
-
-            animation: aparecerMensagem 1.2s ease;
-        }
-
-        /* Coração */
-        .coracao {
-            display: block;
-
-            font-size: 45px;
-
-            color: #d9959d;
-
-            margin-bottom: 10px;
-        }
-
-        /* Título */
-        .mensagem h1 {
-            font-size: 42px;
-
-            font-weight: normal;
-
-            margin-bottom: 25px;
-        }
-
-        /* Texto */
-        .mensagem p {
-            font-size: 18px;
-
-            line-height: 1.8;
-
-            color: #806b64;
-
-            margin-bottom: 35px;
-        }
-
-        /* =====================================================
-           BOTÃO
-           ===================================================== */
-
-        .botao {
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 10px;
-
-            padding: 16px 30px;
-
-            background: #e5aeb5;
-
-            color: white;
-
-            text-decoration: none;
-
-            border-radius: 50px;
-
-            font-family: Arial, sans-serif;
-
-            transition:
-                background 0.3s ease,
-                transform 0.3s ease,
-                box-shadow 0.3s ease;
-        }
-
-        /* Efeito hover */
-        .botao:hover {
-            background: #d58792;
-
-            transform: translateY(-5px);
-
-            box-shadow:
-                0 12px 25px rgba(190, 100, 110, 0.30);
-        }
-
-        /* =====================================================
-           ANIMAÇÕES
-           ===================================================== */
-
-        @keyframes aparecerFoto {
-
-            from {
-                opacity: 0;
-
-                transform: translateX(-40px);
-            }
-
-            to {
-                opacity: 1;
-
-                transform: translateX(0);
-            }
-
-        }
-
-        @keyframes aparecerMensagem {
-
-            from {
-                opacity: 0;
-
-                transform: translateX(40px);
-            }
-
-            to {
-                opacity: 1;
-
-                transform: translateX(0);
-            }
-
-        }
-
-        /* =====================================================
-           RESPONSIVIDADE
-           ===================================================== */
-
-        @media (max-width: 850px) {
-
-            .inicio {
-                flex-direction: column;
-
-                padding: 30px 20px;
-
-                gap: 35px;
-            }
-
-            .foto-container {
-                width: min(85vw, 350px);
-
-                height: 470px;
-            }
-
-            .mensagem {
-                width: min(90vw, 500px);
-
-                padding: 35px 25px;
-            }
-
-            .mensagem h1 {
-                font-size: 32px;
-            }
-
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8f1e7">
+<title>Para Você ❤️</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--cream:#f8f1e7;--paper:#fffaf3;--text:#604b46;--muted:#806b64;--rose:#d9959d;--rose2:#e5aeb5;--line:#eadbd0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:radial-gradient(circle at 15% 15%,#fffdf9 0,transparent 28%),radial-gradient(circle at 90% 80%,#f4dfe0 0,transparent 25%),var(--cream);color:var(--text);font-family:Georgia,serif;overflow-x:hidden;opacity:0;transition:opacity .7s ease}
+body.loaded{opacity:1} body.saindo{opacity:0}
+.inicio{min-height:100vh;display:grid;grid-template-columns:minmax(280px,360px) minmax(320px,540px);align-items:center;justify-content:center;gap:70px;padding:60px 30px;position:relative;overflow:hidden}
+.inicio:before,.inicio:after{content:"♡";position:absolute;color:rgba(217,149,157,.12);font-size:220px;pointer-events:none}.inicio:before{left:-70px;top:-80px}.inicio:after{right:-70px;bottom:-100px}
+.entrada{position:fixed;inset:0;background:var(--paper);z-index:50;display:flex;align-items:center;justify-content:center;pointer-events:none;animation:abertura 2.2s ease forwards}
+.entrada .cora{font-size:72px;color:var(--rose);animation:bater 1s ease-in-out infinite}
+.foto-container{width:360px;height:520px;overflow:hidden;border-radius:38px;box-shadow:0 30px 80px rgba(80,50,40,.2);animation:fotoEntrada 1.3s .3s both;position:relative;background:#eadbc9}
+.foto-container:after{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.7);border-radius:inherit;pointer-events:none}
+.foto-principal{width:100%;height:100%;object-fit:cover;transition:transform 1s ease}.foto-container:hover .foto-principal{transform:scale(1.06)}
+.mensagem{width:min(540px,92vw);padding:58px;background:rgba(255,250,243,.92);backdrop-filter:blur(8px);border:1px solid rgba(234,219,208,.8);border-radius:38px;box-shadow:0 30px 90px rgba(80,50,40,.13);animation:mensagemEntrada 1.3s .5s both;position:relative;z-index:2}
+.coracao{display:block;font-size:48px;color:var(--rose);margin-bottom:8px;animation:bater 2s ease-in-out infinite}.mensagem h1{font-size:44px;font-weight:normal;margin-bottom:22px}.mensagem p{font-size:18px;line-height:1.9;color:var(--muted);margin-bottom:32px}
+.botao{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;background:var(--rose2);color:white;text-decoration:none;border-radius:50px;font-family:Arial,sans-serif;transition:.3s;box-shadow:0 10px 25px rgba(190,100,110,.18)}.botao:hover{background:#d58792;transform:translateY(-4px);box-shadow:0 16px 32px rgba(190,100,110,.25)}
+.mensagem small{display:block;margin-top:18px;color:#ad938b;font-family:Arial,sans-serif;font-size:12px}
+@keyframes abertura{0%{opacity:1}65%{opacity:1}100%{opacity:0;visibility:hidden}}
+@keyframes bater{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@keyframes fotoEntrada{from{opacity:0;transform:translateX(-60px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes mensagemEntrada{from{opacity:0;transform:translateX(60px) scale(.96)}to{opacity:1;transform:none}}
+@media(max-width:850px){.inicio{grid-template-columns:1fr;gap:35px;padding:35px 18px}.foto-container{width:min(85vw,350px);height:470px;margin:auto}.mensagem{padding:38px 27px;margin:auto}.mensagem h1{font-size:34px}.mensagem p{font-size:17px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
 </head>
-
 <body>
-
-    <!-- =====================================================
-         PÁGINA INICIAL
-         ===================================================== -->
-
-    <main class="inicio">
-
-        <!-- Área da foto -->
-        <div class="foto-container">
-
-            <!--
-                Coloque sua foto em:
-                imagens/principal.jpg
-            -->
-            <img
-                src="principal.jpg"
-                alt="Nossa foto"
-                class="foto-principal"
-            >
-
-        </div>
-
-
-        <!-- Área da mensagem -->
-        <section class="mensagem">
-
-            <!-- Coração decorativo -->
-            <span class="coracao">♡</span>
-
-            <!-- Título -->
-            <h1>Para você, meu amor</h1>
-
-            <!-- Mensagem -->
-            <p>
-                Desde que você entrou na minha vida,
-                algumas coisas passaram a ter um significado
-                completamente diferente.
-
-                <br><br>
-
-                Cada conversa, cada risada e cada momento
-                ao seu lado se tornou uma lembrança que
-                eu quero guardar para sempre.
-
-                <br><br>
-
-                Por isso criei esse pequeno espaço.
-                Não é apenas um site.
-
-                É um pedacinho do que sinto por você.
-            </p>
-
-
-            <!-- Botão -->
-            <a
-                href="historia.html"
-                class="botao"
-            >
-                Nossa história ♡
-            </a>
-
-        </section>
-
-    </main>
-
-
-    <script>
-
-        // Mostra no console quando a página termina de carregar.
-        console.log("Página inicial carregada ❤️");
-
-    </script>
-
+<div class="entrada"><div class="cora">♡</div></div>
+<main class="inicio">
+<div class="foto-container"><img src="principal.jpg" alt="Nossa foto" class="foto-principal"></div>
+<section class="mensagem">
+<span class="coracao">♡</span>
+<h1>Para você, meu amor</h1>
+<p>Desde que você entrou na minha vida, algumas coisas passaram a ter um significado completamente diferente.<br><br>Cada conversa, cada risada e cada momento ao seu lado se tornou uma lembrança que eu quero guardar para sempre.<br><br>Por isso criei esse pequeno espaço. Não é apenas um site. É um pedacinho do que sinto por você.</p>
+<a href="historia.html" class="botao transicao">Nossa história ♡</a>
+<small>Uma pequena parte da nossa história está esperando por você...</small>
+</section>
+</main>
+<script>
+window.addEventListener('load',()=>document.body.classList.add('loaded'));
+document.querySelectorAll('.transicao').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();document.body.classList.add('saindo');setTimeout(()=>location.href=link.href,650)}));
+</script>
 </body>
-
 </html>
