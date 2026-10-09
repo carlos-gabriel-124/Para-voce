@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ainda não acabou ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: auto; }
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #fff0f6, #ffe1ed);
+      color: #51263b;
+      font-family: 'Poppins', sans-serif;
+    }
+    .top { text-align: center; padding: 28px 16px 18px; }
+    .brand {
+      font: italic 2.6rem 'Great Vibes', cursive;
+      color: #cf3374;
+      margin: 0 0 18px;
+    }
+    .nav { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+    .nav a {
+      color: #8e3159; text-decoration: none; border: 1px solid #edb5cd;
+      background: #ffffffb8; padding: 9px 17px; border-radius: 30px;
+      transition: background .2s, transform .2s;
+    }
+    .nav a:hover { background: #fff; transform: translateY(-2px); }
+    .wrap { max-width: 1100px; margin: auto; padding: 15px 20px 50px; }
+    .title {
+      text-align: center;
+      font: italic clamp(2.2rem, 5vw, 3.5rem) 'Playfair Display', serif;
+      color: #bd2c69; margin: 12px 0;
+    }
+    .intro { text-align: center; line-height: 1.8; max-width: 760px; margin: 0 auto; }
+    .carousel {
+      display: flex; gap: 14px; overflow: hidden; margin: 25px 0 35px;
+      padding: 12px 0;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+    }
+    .track { display: flex; flex: 0 0 auto; gap: 14px; width: max-content; animation: slide 48s linear infinite; }
+    .carousel:hover .track { animation-play-state: paused; }
+    .track img {
+      display: block; flex: 0 0 auto; width: clamp(170px, 24vw, 250px); height: 300px;
+      object-fit: cover; border-radius: 18px; border: 6px solid white;
+      box-shadow: 0 10px 28px #92345b24;
+    }
+    @keyframes slide { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 7px)); } }
+    .text {
+      white-space: pre-wrap; overflow-wrap: anywhere; max-width: 800px; margin: 25px auto;
+      background: #ffffffad; padding: clamp(22px, 5vw, 48px); border-radius: 26px;
+      box-shadow: 0 18px 45px #92345b14;
+      font: italic clamp(1.45rem, 2.5vw, 2rem) 'Great Vibes', cursive;
+      line-height: 1.8; min-height: 180px;
+    }
+    .center { text-align: center; }
+    .btn {
+      display: inline-block; background: #ce3476; color: white; text-decoration: none;
+      padding: 13px 22px; border-radius: 30px; margin: 12px;
+      box-shadow: 0 7px 18px #ce347633; transition: transform .2s, background .2s;
+    }
+    .btn:hover { background: #ad245f; transform: translateY(-2px); }
+    .hidden { display: none; }
+    .foot { text-align: center; font: 1.7rem 'Great Vibes', cursive; color: #b4386b; padding: 25px; }
+    @media (max-width: 600px) {
+      .top { padding-top: 22px; }
+      .brand { font-size: 2.3rem; }
+      .track img { height: 240px; }
+      .wrap { padding-inline: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .track { animation-duration: 120s; } }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <p class="brand">Eu te amo Emilayle</p>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="historia.html">Nossa história</a>
+      <a href="declaracao.html" aria-current="page">Declaração</a>
+      <a href="historia.html#carta">Carta</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <h1 class="title">Ainda não acabou, meu amor ♡</h1>
+    <p class="intro">Enquanto nossas fotos passam, lembra: cada uma guarda um instante, mas nenhuma consegue mostrar tudo o que você significa para mim.</p>
+
+    <div class="carousel" aria-label="Carrossel de nossas fotos">
+      <div class="track" id="track"></div>
+    </div>
+
+    <div class="text" id="texto" aria-live="polite"></div>
+    <div class="center hidden" id="fim">
+      <a class="btn" href="index.html#carta">Onde oficializamos tudo: 💌</a>
+      <a class="btn" href="carta-secreta.html">Ir para a carta secreta</a>
+    </div>
+  </main>
+
+  <footer class="foot">Você, eu e Deus — um dia de cada vez. ♡</footer>
+
+  <script>
+    const imgs = Array.from({ length: 15 }, (_, i) => `foto${i + 1}.jpg`);
+    const track = document.getElementById('track');
+
+    // Duplica as 15 imagens para que a animação possa reiniciar sem um salto visível.
+    [...imgs, ...imgs].forEach((src, i) => {
+      const im = document.createElement('img');
+      im.src = src;
+      im.alt = `Nossa foto ${(i % 15) + 1}`;
+      im.loading = i < 4 ? 'eager' : 'lazy';
+      track.appendChild(im);
+    });
+
+    const carta = `Emilayle, eu queria que você pudesse enxergar por alguns instantes o lugar que ocupa dentro de mim. Talvez assim entendesse por que o seu sorriso muda o peso de um dia, por que a sua presença torna os momentos simples tão especiais e por que, quando penso no futuro, meu coração procura naturalmente um espaço onde você esteja.
+
+O que sinto por você não cabe apenas em frases bonitas. É vontade de estar presente, de ouvir com atenção, de cuidar sem prender, de apoiar seus sonhos e de caminhar ao seu lado respeitando a pessoa maravilhosa que você é. É lembrar que amar alguém também é aprender: aprender a ter paciência, a conversar com honestidade, a pedir perdão quando necessário e a não deixar o orgulho falar mais alto que o carinho.
+
+Eu não quero oferecer a você uma promessa vazia de perfeição. Quero oferecer sinceridade. Quero construir uma relação em que possamos ser nós mesmos, dividir alegrias e preocupações, rir das pequenas bobagens, enfrentar as responsabilidades e continuar encontrando motivos para agradecer. Quero que você se sinta amada não só quando eu disser essas palavras, mas na maneira como eu agir, nas escolhas que fizer e na constância com que eu cuidar de nós.
+
+Acima de tudo, quero Deus no centro da nossa história. Que a nossa fé nos ensine a amar com humildade, a respeitar nossos limites e a buscar sabedoria antes de tomar decisões. Que a oração seja nosso encontro nos dias tranquilos e nosso apoio nos dias difíceis. Que a gente nunca confunda amor com ausência de problemas, mas aprenda a atravessá-los com maturidade, verdade e mãos dadas.
+
+Quando imagino nossa vida, penso nas pequenas cenas que ainda nem aconteceram: planos feitos à mesa, passeios inesperados, abraços depois de um dia longo, datas que vamos comemorar, sonhos que vão amadurecer com o tempo e uma casa que tenha paz, acolhimento e fé. Não preciso saber hoje cada detalhe desse caminho. Quero apenas continuar dando os passos certos, com responsabilidade, amor e a bênção de Deus.
+
+Você é importante para mim de uma maneira que quero demonstrar cada vez melhor. Quero celebrar suas conquistas sem competição, estar perto quando precisar de apoio, respeitar seus silêncios e lembrar você da sua força quando esquecer dela. Quero que nossa relação seja parceria, amizade, carinho e compromisso — uma escolha que se renova, não apenas uma emoção que aparece nos dias fáceis.
+
+Obrigado por fazer parte da minha vida e por me permitir sonhar com tantas coisas bonitas. Se eu pudesse pedir algo para o nosso futuro, pediria que Deus nos dê discernimento para escolher bem, coragem para crescer, ternura para cuidar um do outro e gratidão para reconhecer as bênçãos que já temos. Que o nosso amor amadureça sem perder a doçura, e que nunca falte espaço para conversar, rir, aprender e recomeçar.
+
+Eu te amo, Emilayle. Amo quem você é, amo o que estamos construindo e amo a possibilidade de continuar escrevendo essa história com você. Não porque eu saiba como tudo será, mas porque quero viver cada capítulo com verdade, intenção e fé. Que seja um amor que honre a Deus, que faça bem a nós dois e que permaneça firme mesmo enquanto a vida muda.
+
+Se um dia você voltar a ler estas palavras, espero que sinta o mesmo carinho que senti ao escrevê-las. Que elas sejam um lembrete: você não é um detalhe nos meus planos. Você é alguém que eu quero tratar com cuidado, escolher com consciência e amar com todo o coração. Que Deus cuide de nós e nos ensine, todos os dias, a fazer florescer aquilo que estamos construindo. ❤️`;
+
+    let i = 0;
+    const el = document.getElementById('texto');
+    function type() {
+      if (i < carta.length) {
+        const char = carta[i++];
+        el.textContent += char;
+        setTimeout(type, char === '\n' ? 240 : 30);
+      } else {
+        document.getElementById('fim').classList.remove('hidden');
+      }
+    }
+    setTimeout(type, 1200);
+  </script>
+</body>
+</html>
