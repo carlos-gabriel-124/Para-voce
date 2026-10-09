@@ -1,50 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#f8f1e7">
-<title>Para Você ❤️</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--cream:#f8f1e7;--paper:#fffaf3;--text:#604b46;--muted:#806b64;--rose:#d9959d;--rose2:#e5aeb5;--line:#eadbd0}
-html{scroll-behavior:smooth}
-body{min-height:100vh;background:radial-gradient(circle at 15% 15%,#fffdf9 0,transparent 28%),radial-gradient(circle at 90% 80%,#f4dfe0 0,transparent 25%),var(--cream);color:var(--text);font-family:Georgia,serif;overflow-x:hidden;opacity:0;transition:opacity .7s ease}
-body.loaded{opacity:1} body.saindo{opacity:0}
-.inicio{min-height:100vh;display:grid;grid-template-columns:minmax(280px,360px) minmax(320px,540px);align-items:center;justify-content:center;gap:70px;padding:60px 30px;position:relative;overflow:hidden}
-.inicio:before,.inicio:after{content:"♡";position:absolute;color:rgba(217,149,157,.12);font-size:220px;pointer-events:none}.inicio:before{left:-70px;top:-80px}.inicio:after{right:-70px;bottom:-100px}
-.entrada{position:fixed;inset:0;background:var(--paper);z-index:50;display:flex;align-items:center;justify-content:center;pointer-events:none;animation:abertura 2.2s ease forwards}
-.entrada .cora{font-size:72px;color:var(--rose);animation:bater 1s ease-in-out infinite}
-.foto-container{width:360px;height:520px;overflow:hidden;border-radius:38px;box-shadow:0 30px 80px rgba(80,50,40,.2);animation:fotoEntrada 1.3s .3s both;position:relative;background:#eadbc9}
-.foto-container:after{content:"";position:absolute;inset:0;border:1px solid rgba(255,255,255,.7);border-radius:inherit;pointer-events:none}
-.foto-principal{width:100%;height:100%;object-fit:cover;transition:transform 1s ease}.foto-container:hover .foto-principal{transform:scale(1.06)}
-.mensagem{width:min(540px,92vw);padding:58px;background:rgba(255,250,243,.92);backdrop-filter:blur(8px);border:1px solid rgba(234,219,208,.8);border-radius:38px;box-shadow:0 30px 90px rgba(80,50,40,.13);animation:mensagemEntrada 1.3s .5s both;position:relative;z-index:2}
-.coracao{display:block;font-size:48px;color:var(--rose);margin-bottom:8px;animation:bater 2s ease-in-out infinite}.mensagem h1{font-size:44px;font-weight:normal;margin-bottom:22px}.mensagem p{font-size:18px;line-height:1.9;color:var(--muted);margin-bottom:32px}
-.botao{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;background:var(--rose2);color:white;text-decoration:none;border-radius:50px;font-family:Arial,sans-serif;transition:.3s;box-shadow:0 10px 25px rgba(190,100,110,.18)}.botao:hover{background:#d58792;transform:translateY(-4px);box-shadow:0 16px 32px rgba(190,100,110,.25)}
-.mensagem small{display:block;margin-top:18px;color:#ad938b;font-family:Arial,sans-serif;font-size:12px}
-@keyframes abertura{0%{opacity:1}65%{opacity:1}100%{opacity:0;visibility:hidden}}
-@keyframes bater{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
-@keyframes fotoEntrada{from{opacity:0;transform:translateX(-60px) scale(.96)}to{opacity:1;transform:none}}
-@keyframes mensagemEntrada{from{opacity:0;transform:translateX(60px) scale(.96)}to{opacity:1;transform:none}}
-@media(max-width:850px){.inicio{grid-template-columns:1fr;gap:35px;padding:35px 18px}.foto-container{width:min(85vw,350px);height:470px;margin:auto}.mensagem{padding:38px 27px;margin:auto}.mensagem h1{font-size:34px}.mensagem p{font-size:17px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffe4ef">
+  <title>Eu te amo, Emilayle ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --pink:#d93679; --ink:#4b2438; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; overflow:hidden; display:grid; place-items:center; padding:24px; color:var(--ink); font-family:'Poppins',sans-serif; background:linear-gradient(135deg,#ffe4ef,#fff5f8 55%,#ffd8e8); }
+    .intro { position:fixed; inset:0; z-index:5; display:grid; place-items:center; background:#fff0f6; transition:opacity .9s,visibility .9s; }
+    .intro.hide { opacity:0; visibility:hidden; }
+    .intro-heart { color:var(--pink); font-size:clamp(100px,25vw,190px); animation:pulse 1s infinite; filter:drop-shadow(0 12px 24px #d9367950); }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.14)} }
+    .petal { position:fixed; top:-35px; z-index:0; pointer-events:none; color:#e66b9b; opacity:.75; animation:fall linear forwards; }
+    @keyframes fall { to { transform:translateY(110vh) rotate(650deg); opacity:0; } }
+    .page { position:relative; z-index:1; width:min(100%,520px); text-align:center; animation:appear 1.1s ease both; }
+    @keyframes appear { from{opacity:0;transform:translateY(18px) scale(.97)} to{opacity:1;transform:translateY(0) scale(1)} }
+    .brand { margin:0 0 22px; color:var(--pink); font:italic clamp(2.2rem,8vw,3.4rem) 'Great Vibes',cursive; }
+    .heart-photo { width:min(75vw,340px); margin:0 auto 25px; filter:drop-shadow(0 20px 25px #a02b5c35); }
+    .heart-photo svg { display:block; width:100%; height:auto; }
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    .access { padding:25px clamp(18px,5vw,32px) 30px; background:#ffffffc9; border:1px solid #f1bdd2; border-radius:28px; box-shadow:0 20px 60px #9c42651a; backdrop-filter:blur(8px); }
+    .access h1 { margin:0 0 9px; color:#b92d68; font:italic 1.8rem 'Playfair Display',serif; }
+    .access p { margin:0 0 18px; font-size:.95rem; line-height:1.7; }
+    input { width:100%; padding:14px 16px; border:1px solid #e6a8c3; border-radius:13px; background:white; font:inherit; text-align:center; letter-spacing:.15em; outline-color:var(--pink); }
+    button { margin-top:13px; border:0; border-radius:999px; padding:13px 23px; background:var(--pink); color:#fff; font:inherit; cursor:pointer; box-shadow:0 8px 20px #d9367930; transition:transform .2s,background .2s; }
+    button:hover { background:#b92d68; transform:translateY(-2px); }
+    @media(max-height:700px) { body{overflow:auto}.heart-photo{width:min(55vw,250px)}.brand{margin-bottom:10px} }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important} }
+  </style>
 </head>
 <body>
-<div class="entrada"><div class="cora">♡</div></div>
-<main class="inicio">
-<div class="foto-container"><img src="principal.jpg" alt="Nossa foto" class="foto-principal"></div>
-<section class="mensagem">
-<span class="coracao">♡</span>
-<h1>Para você, meu amor</h1>
-<p>Desde que você entrou na minha vida, algumas coisas passaram a ter um significado completamente diferente.<br><br>Cada conversa, cada risada e cada momento ao seu lado se tornou uma lembrança que eu quero guardar para sempre.<br><br>Por isso criei esse pequeno espaço. Não é apenas um site. É um pedacinho do que sinto por você.</p>
-<a href="historia.html" class="botao transicao">Nossa história ♡</a>
-<small>Uma pequena parte da nossa história está esperando por você...</small>
-</section>
-</main>
-<script>
-window.addEventListener('load',()=>document.body.classList.add('loaded'));
-document.querySelectorAll('.transicao').forEach(link=>link.addEventListener('click',e=>{e.preventDefault();document.body.classList.add('saindo');setTimeout(()=>location.href=link.href,650)}));
-</script>
+  <div class="intro" id="intro" aria-hidden="true"><div class="intro-heart">♥</div></div>
+  <main class="page">
+    <p class="brand">Eu te amo Emilayle</p>
+    <div class="heart-photo">
+      <svg viewBox="0 0 512 512" role="img" aria-label="Nossa foto em formato de coração">
+        <defs><clipPath id="heartClip"><path d="M256 462 C220 427 42 308 42 166 C42 58 178 28 256 130 C334 28 470 58 470 166 C470 308 292 427 256 462Z"/></clipPath></defs>
+        <image href="principal.jpg" x="0" y="0" width="512" height="512" preserveAspectRatio="xMidYMid slice" clip-path="url(#heartClip)"/>
+        <path d="M256 462 C220 427 42 308 42 166 C42 58 178 28 256 130 C334 28 470 58 470 166 C470 308 292 427 256 462Z" fill="none" stroke="#fff" stroke-width="8"/>
+      </svg>
+    </div>
+    <form class="access" id="formAcesso">
+      <h1>Acessar nossa vida</h1>
+      <p>Nosso cantinho tem uma senha especial. ❤️</p>
+      <label for="senhaPrincipal" class="sr-only">Senha de acesso</label>
+      <input id="senhaPrincipal" name="senha" type="password" inputmode="numeric" autocomplete="off" placeholder="Digite nossa senha" required>
+      <button type="submit">Acessar nossa vida ♡</button>
+    </form>
+  </main>
+  <script>
+    'use strict';
+    const SENHA_SITE = '280626';
+    const intro = document.getElementById('intro');
+    window.setTimeout(() => intro.classList.add('hide'), 1500);
+    function criarPetala() {
+      const petala = document.createElement('span');
+      petala.className = 'petal';
+      petala.textContent = ['✿', '❀', '♥'][Math.floor(Math.random() * 3)];
+      petala.style.left = `${Math.random() * 100}vw`;
+      petala.style.fontSize = `${12 + Math.random() * 18}px`;
+      petala.style.animationDuration = `${7 + Math.random() * 8}s`;
+      document.body.appendChild(petala);
+      window.setTimeout(() => petala.remove(), 16000);
+    }
+    window.setInterval(criarPetala, 550);
+    document.getElementById('formAcesso').addEventListener('submit', event => {
+      event.preventDefault();
+      const senha = document.getElementById('senhaPrincipal').value;
+      if (senha === SENHA_SITE) {
+        window.location.href = 'historia.html';
+      } else {
+        window.alert('Quando é Deus quem cuida, ninguém de fora acessa');
+        document.getElementById('senhaPrincipal').select();
+      }
+    });
+  </script>
 </body>
 </html>
