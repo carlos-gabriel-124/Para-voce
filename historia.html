@@ -1,70 +1,152 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#f8f1e7">
-<title>Nossa História ❤️</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}:root{--bg:#f8f1e7;--paper:#fffaf3;--text:#604b46;--muted:#806b64;--rose:#d9959d;--rose2:#e5aeb5;--line:#eadbd0}
-body{min-height:100vh;background:radial-gradient(circle at 10% 10%,#fffdf9,transparent 30%),var(--bg);color:var(--text);font-family:Georgia,serif;overflow-x:hidden;opacity:0;transition:opacity .65s ease}body.loaded{opacity:1}body.saindo{opacity:0}
-.sidebar{position:fixed;left:0;top:0;width:260px;height:100vh;padding:40px 25px;background:rgba(255,250,243,.94);backdrop-filter:blur(12px);border-right:1px solid var(--line);display:flex;flex-direction:column;z-index:20}.logo{text-align:center;font-size:30px;margin-bottom:45px;cursor:pointer;user-select:none}.logo span{color:var(--rose)}.menu{display:flex;flex-direction:column;gap:10px}.menu button{border:none;background:transparent;padding:15px;border-radius:15px;text-align:left;color:var(--muted);font-family:Arial,sans-serif;font-size:15px;cursor:pointer;transition:.3s}.menu button:hover,.menu button.ativo{background:#f1dada;color:var(--text);transform:translateX(4px)}.sidebar-footer{margin-top:auto;text-align:center;font:12px Arial,sans-serif;color:#a68d84}
-.conteudo{margin-left:260px;min-height:100vh;padding:65px 55px 90px}.secao{display:none;animation:aparecer .7s ease}.secao.ativa{display:block}.titulo{text-align:center;margin-bottom:42px}.titulo .coracao{font-size:40px;color:var(--rose)}.titulo h1{font-size:42px;font-weight:normal;margin:12px 0}.titulo p{color:var(--muted);font-size:17px}
-.carta-historia{max-width:900px;margin:auto;padding:52px;background:var(--paper);border-radius:30px;box-shadow:0 20px 60px rgba(80,50,40,.09);line-height:2;font-size:18px;color:#735e58}.carta-historia p{margin-bottom:24px}.destaque{border-left:3px solid var(--rose);padding-left:22px;font-style:italic}.final-historia{text-align:center;color:#d0838e;font-size:23px;margin-top:38px!important;margin-bottom:0!important}
-.timeline{max-width:900px;margin:auto;position:relative;padding:10px 0}.timeline:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:#e8cdd0;transform:translateX(-50%)}.evento{width:50%;padding:0 45px 42px;position:relative}.evento:nth-child(odd){text-align:right}.evento:nth-child(even){margin-left:50%}.evento:after{content:"♡";position:absolute;top:0;width:36px;height:36px;border-radius:50%;background:var(--paper);border:2px solid var(--rose);color:var(--rose);display:grid;place-items:center}.evento:nth-child(odd):after{right:-18px}.evento:nth-child(even):after{left:-18px}.evento .data{font:700 12px Arial,sans-serif;letter-spacing:1.5px;text-transform:uppercase;color:var(--rose)}.evento h3{font-size:23px;font-weight:normal;margin:7px 0}.evento p{color:var(--muted);line-height:1.7}
-.futuro-grid{max-width:1000px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.futuro-card{background:var(--paper);padding:30px 24px;border-radius:25px;box-shadow:0 15px 40px rgba(80,50,40,.08);transition:.35s;border:1px solid transparent}.futuro-card:hover{transform:translateY(-7px);border-color:#eed2d5}.futuro-card .icone{font-size:35px}.futuro-card h3{font-size:20px;font-weight:normal;margin:14px 0 8px}.futuro-card p{color:var(--muted);line-height:1.7;font-size:15px}
-.galeria{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.foto{height:350px;overflow:hidden;border-radius:25px;background:var(--paper);box-shadow:0 15px 40px rgba(80,50,40,.1);cursor:zoom-in;position:relative}.foto img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}.foto:hover img{transform:scale(1.08)}.foto:after{content:"⌕";position:absolute;right:15px;bottom:15px;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:rgba(255,250,243,.9);color:var(--text);opacity:0;transition:.3s}.foto:hover:after{opacity:1}
-.lightbox{position:fixed;inset:0;background:rgba(35,23,20,.9);z-index:100;display:flex;align-items:center;justify-content:center;padding:30px;opacity:0;visibility:hidden;transition:.35s}.lightbox.aberto{opacity:1;visibility:visible}.lightbox img{max-width:92vw;max-height:88vh;object-fit:contain;border-radius:18px;box-shadow:0 25px 80px rgba(0,0,0,.35);transform:scale(.92);transition:.35s}.lightbox.aberto img{transform:scale(1)}.fechar{position:absolute;top:20px;right:25px;color:#fff;background:transparent;border:0;font-size:38px;cursor:pointer}.seta{position:absolute;top:50%;transform:translateY(-50%);border:0;background:rgba(255,255,255,.12);color:#fff;width:48px;height:48px;border-radius:50%;font-size:26px;cursor:pointer}.anterior{left:22px}.proxima{right:22px}
-.segredo{max-width:700px;margin:30px auto 0;text-align:center;display:none;background:var(--paper);padding:35px;border-radius:25px;box-shadow:0 15px 50px rgba(80,50,40,.12);animation:aparecer .7s ease}.segredo.mostrar{display:block}.segredo h3{font-weight:normal;font-size:25px;margin-bottom:10px}.segredo p{color:var(--muted);line-height:1.8}
-@keyframes aparecer{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-@media(max-width:900px){.sidebar{width:210px}.conteudo{margin-left:210px;padding:45px 25px}.galeria{grid-template-columns:repeat(2,1fr)}.futuro-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:650px){.sidebar{position:sticky;top:0;width:100%;height:auto;padding:15px 12px;border-right:0;border-bottom:1px solid var(--line)}.logo{margin-bottom:12px;font-size:25px}.menu{flex-direction:row;overflow-x:auto;gap:6px;scrollbar-width:none}.menu button{white-space:nowrap;padding:11px 13px;font-size:13px}.sidebar-footer{display:none}.conteudo{margin-left:0;padding:35px 16px 60px}.titulo h1{font-size:31px}.titulo p{font-size:15px}.carta-historia{padding:30px 22px;font-size:16px;line-height:1.85}.timeline:before{left:17px}.evento,.evento:nth-child(even){width:100%;margin-left:0;text-align:left;padding:0 10px 35px 52px}.evento:nth-child(odd):after,.evento:nth-child(even):after{left:0;right:auto}.galeria{grid-template-columns:1fr}.foto{height:300px}.futuro-grid{grid-template-columns:1fr}.lightbox{padding:15px}.seta{width:42px;height:42px}.anterior{left:8px}.proxima{right:8px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition:none!important}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffe4ef">
+  <title>Nós — Eu te amo, Emilayle ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--pink:#d93679;--rose:#f6b5cf;--cream:#fff7fa;--ink:#4b2438}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:linear-gradient(135deg,#fff5f8,#ffe4ef);color:var(--ink);font-family:Poppins,sans-serif;min-height:100vh}
+    header{position:sticky;top:0;z-index:4;padding:16px 18px 14px;text-align:center;background:#fff7faeF;backdrop-filter:blur(12px);border-bottom:1px solid #f1c6d8}
+    .brand{font:italic clamp(2rem,5vw,2.8rem) 'Great Vibes',cursive;color:var(--pink);margin:0 0 12px}
+    nav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+    nav a{font-size:.9rem;color:#853b60;text-decoration:none;background:#fff;border:1px solid #efb6ce;border-radius:999px;padding:9px 19px;transition:.2s;box-shadow:0 4px 14px #9c42650d}
+    nav a:hover{background:var(--pink);color:white}
+    main{width:min(1100px,100%);margin:auto;padding:36px 20px 60px}
+    .intro{text-align:center;margin:10px auto 38px;max-width:700px}
+    h1,h2{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;color:#b92d68}
+    h1{font-size:clamp(2.3rem,5vw,3.5rem);margin:0 0 12px}
+    .intro p{line-height:1.8;margin:0}
+    .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .photo{border:0;background:white;padding:7px;border-radius:18px;box-shadow:0 8px 25px #8f34541c;cursor:zoom-in;transition:transform .25s;min-width:0}
+    .photo:hover{transform:translateY(-4px) rotate(-.5deg)}
+    .photo img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:12px}
+    .photo span{display:block;padding:9px 3px 4px;font:italic 1rem 'Playfair Display',serif}
+    .links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:42px auto}
+    .primary{display:inline-block;padding:13px 22px;border-radius:999px;background:var(--pink);color:#fff;text-decoration:none;border:0;font:inherit;cursor:pointer;box-shadow:0 8px 20px #d9367930}
+    .letter-gate{max-width:500px;margin:45px auto 0;padding:28px;background:#ffffffc9;border:1px solid #f1bdd2;border-radius:25px;text-align:center;box-shadow:0 20px 60px #9c42651a}
+    .letter-gate h2{font-size:2rem;margin:0 0 12px}
+    .letter-gate p{line-height:1.7}
+    .letter-gate input{width:100%;padding:13px;border:1px solid #e6a8c3;border-radius:12px;font:inherit;text-align:center}
+    .lightbox{position:fixed;inset:0;z-index:10;display:none;align-items:center;justify-content:center;gap:20px;padding:60px 18px;background:#160b12ed}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:min(75vw,850px);max-height:82vh;object-fit:contain;border-radius:8px;cursor:zoom-in;transition:transform .25s}
+    .lightbox button{position:absolute;border:0;border-radius:50%;width:44px;height:44px;background:#ffffff25;color:white;font-size:1.8rem;cursor:pointer}
+    .lightbox .close{top:18px;right:20px}.lightbox .prev{left:18px;top:50%}.lightbox .next{right:18px;top:50%}
+    footer{text-align:center;padding:20px;color:#9b6b82;font:italic 1.1rem 'Great Vibes',cursive;font-size:1.7rem}
+    @media(max-width:760px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}main{padding:28px 13px}.lightbox img{max-width:80vw}.lightbox .prev{left:5px}.lightbox .next{right:5px}}
+    @media(max-width:420px){.gallery{grid-template-columns:1fr 1fr}.photo span{font-size:.9rem}nav{gap:6px}nav a{padding:8px 12px;font-size:.82rem}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+  </style>
 </head>
 <body>
-<aside class="sidebar"><div class="logo" id="logoSecreto">Nós <span>♡</span></div><nav class="menu">
-<button class="menu-btn ativo" data-alvo="historia">♡ Nossa história</button><button class="menu-btn" data-alvo="linha">♡ Nossa linha do tempo</button><button class="menu-btn" data-alvo="galeria">♡ Galeria de fotos</button><button class="menu-btn" data-alvo="futuro">♡ Nosso futuro</button><button id="botaoSurpresa">♡ Surpresa</button>
-</nav><div class="sidebar-footer">Feito especialmente para você ❤️</div></aside>
-<main class="conteudo">
-<section id="historia" class="secao ativa"><div class="titulo"><div class="coracao">♡</div><h1>Nossa História</h1><p>Tudo aquilo que estamos construindo juntos.</p></div><article class="carta-historia">
-<p class="destaque">Algumas histórias começam de repente. Outras começam devagar, quase sem perceber. A nossa tem um pouco dos dois.</p>
-<p>Talvez tudo tenha começado em um dia comum, mas com o tempo aquele momento ganhou um significado que nenhum de nós poderia imaginar.</p>
-<p>Foram as conversas, as risadas, os momentos difíceis, os momentos felizes e todas aquelas pequenas coisas que, juntas, começaram a formar a nossa história.</p>
-<p>Hoje, quando olho para tudo aquilo que já vivemos, percebo que cada momento teve sua importância. Cada lembrança ajudou a construir aquilo que somos hoje.</p>
-<p>Eu não quero que a nossa história seja apenas sobre o começo. Quero que ela seja sobre tudo aquilo que ainda vamos viver.</p>
-<p>Quero continuar conhecendo você, aprendendo com você e estando ao seu lado nos dias bons e também nos dias difíceis.</p>
-<p>Que Deus esteja presente em cada decisão, em cada sonho e em cada passo que dermos. Que, se for da vontade dEle, possamos construir uma vida juntos, uma família e um futuro baseado em amor, respeito, companheirismo e fé.</p>
-<p>E, acima de tudo, quero que a nossa história tenha propósito.</p><p class="final-historia">Eu quero continuar escrevendo essa história com você. ❤️</p>
-</article></section>
-<section id="linha" class="secao"><div class="titulo"><div class="coracao">♡</div><h1>Como tudo começou</h1><p>Alguns detalhes que tornam a nossa história única.</p></div><div class="timeline">
-<div class="evento"><div class="data">📅 DATA EM QUE NOS CONHECEMOS</div><h3>O primeiro encontro</h3><p><strong>28-06-26</strong><br>O dia em que nossos caminhos se cruzaram.</p></div>
-<div class="evento"><div class="data">📍 ONDE TUDO COMEÇOU</div><h3>O lugar da nossa história</h3><p><strong>02-07-26</strong><br>O cenário de um momento que acabou se tornando importante para nós.</p></div>
-<div class="evento"><div class="data">😂 UMA LEMBRANÇA</div><h3>Aquela história que sempre faz rir</h3><p><strong>"A tal folha dupla"</strong><br>Porque uma história de amor também precisa ter boas risadas.</p></div>
-<div class="evento"><div class="data">❤️ PRIMEIRO MOMENTO ESPECIAL</div><h3>Quando percebemos que era diferente</h3><p><strong>Em todos os momentos em que confiamos um ao outro</strong><br>Um daqueles momentos que ficam guardados para sempre.</p></div>
-</div></section>
-<section id="galeria" class="secao"><div class="titulo"><div class="coracao">♡</div><h1>Nossos momentos</h1><p>Clique em uma foto para vê-la em tela cheia.</p></div><div class="galeria">
-<div class="foto"><img src="foto1.jpg" alt="Momento especial 1"></div><div class="foto"><img src="foto2.jpg" alt="Momento especial 2"></div><div class="foto"><img src="foto3.jpg" alt="Momento especial 3"></div><div class="foto"><img src="foto4.jpg" alt="Momento especial 4"></div><div class="foto"><img src="foto5.jpg" alt="Momento especial 5"></div><div class="foto"><img src="foto6.jpg" alt="Momento especial 6"></div><div class="foto"><img src="foto7.jpg" alt="Momento especial 7"></div><div class="foto"><img src="foto8.jpg" alt="Momento especial 8"></div><div class="foto"><img src="foto9.jpg" alt="Momento especial 9"></div><div class="foto"><img src="foto10.jpg" alt="Momento especial 10"></div><div class="foto"><img src="foto11.jpg" alt="Momento especial 11"></div><div class="foto"><img src="foto12.jpg" alt="Momento especial 12"></div><div class="foto"><img src="foto13.jpg" alt="Momento especial 13"></div><div class="foto"><img src="foto14.jpg" alt="Momento especial 14"></div><div class="foto"><img src="foto15.jpg" alt="Momento especial 15"></div>
+  <header>
+    <p class="brand">Eu te amo Emilayle</p>
+    <nav aria-label="Navegação principal">
+      <a href="historia.html" aria-current="page">Nossa história</a>
+      <a href="declaracao.html">Declaração</a>
+      <a href="#carta">Carta</a>
+    </nav>
+  </header>
+  <main>
+    <section class="intro">
+      <h1>Nossos momentos ♡</h1>
+      <p>Cada foto guarda um pedacinho da nossa história. Toque em uma imagem para reviver essa lembrança.</p>
+    </section>
+    <section class="gallery" id="gallery" aria-label="Galeria de nossas fotos"></section>
+    <div class="links"><a class="primary" href="declaracao.html">Para você, meu amor ♡</a></div>
+    <section class="letter-gate" id="carta">
+      <h2>Onde oficializamos tudo:</h2>
+      <p>Digite a senha especial para abrir a nossa carta.</p>
+      <form id="formCarta">
+        <input id="senhaCarta" type="password" placeholder="Senha da carta" aria-label="Senha da carta" autocomplete="off" required>
+        <button class="primary" type="submit">Abrir nossa carta 💌</button>
+      </form>
+    </section>
+  </main>
+  <footer>Com amor, para nós dois. ♡</footer>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização da foto">
+    <button class="close" type="button" aria-label="Fechar">×</button>
+    <button class="prev" type="button" aria-label="Foto anterior">‹</button>
+    <img id="fotoGrande" alt="Nossa lembrança ampliada">
+    <button class="next" type="button" aria-label="Próxima foto">›</button>
+  </div>
+  <script>
+    'use strict';
+    const SENHA_CARTA = '020726';
+    const fotos = Array.from({length:15}, (_, indice) => `foto${indice + 1}.jpg`);
+    const galeria = document.getElementById('gallery');
+    const lightbox = document.getElementById('lightbox');
+    const fotoGrande = document.getElementById('fotoGrande');
+    let fotoAtual = 0;
+    let ampliada = false;
 
-<!-- Para adicionar mais fotos, copie um bloco .foto e altere o nome do arquivo. -->
-</div></section>
-<section id="futuro" class="secao"><div class="titulo"><div class="coracao">♡</div><h1>Nosso futuro</h1><p>Os capítulos que ainda queremos escrever.</p></div><div class="futuro-grid">
-<div class="futuro-card"><div class="icone">💍</div><h3>Nosso noivado</h3><p>Um novo passo, uma nova promessa e mais um capítulo da nossa história.</p></div>
-<div class="futuro-card"><div class="icone">💒</div><h3>Nosso casamento</h3><p>O dia em que poderemos celebrar diante de todos a escolha de caminhar juntos.</p></div>
-<div class="futuro-card"><div class="icone">🏠</div><h3>Nosso lar</h3><p>Um cantinho nosso, cheio de lembranças, planos, risadas e paz.</p></div>
-<div class="futuro-card"><div class="icone">✈️</div><h3>Nossas viagens</h3><p>Novos lugares, novas fotos e histórias que ainda nem começamos a viver.</p></div>
-<div class="futuro-card"><div class="icone">👨‍👩‍👧</div><h3>Nossa família</h3><p>Um futuro construído com amor, cuidado, respeito e fé.</p></div>
-<div class="futuro-card"><div class="icone">❤️</div><h3>Todos os capítulos</h3></div>
-</div></section>
-<div id="segredo" class="segredo"><h3>Você encontrou um segredo. ❤️</h3><p>Nem tudo que existe nessa história está escrito nas páginas. Algumas coisas só pertencem a nós dois.</p></div>
-</main>
-<div class="lightbox" id="lightbox"><button class="fechar" aria-label="Fechar">×</button><button class="seta anterior" aria-label="Anterior">‹</button><img id="lightboxImg" src="" alt="Foto ampliada"><button class="seta proxima" aria-label="Próxima">›</button></div>
-<script>
-window.addEventListener('load',()=>document.body.classList.add('loaded'));
-const botoes=document.querySelectorAll('.menu-btn'), secoes=document.querySelectorAll('.secao');
-botoes.forEach(botao=>botao.addEventListener('click',()=>{botoes.forEach(b=>b.classList.remove('ativo'));botao.classList.add('ativo');secoes.forEach(s=>s.classList.remove('ativa'));document.getElementById(botao.dataset.alvo).classList.add('ativa');window.scrollTo({top:0,behavior:'smooth'})}));
-document.getElementById('botaoSurpresa').addEventListener('click',()=>{document.body.classList.add('saindo');setTimeout(()=>location.href='surpresa.html',600)});
-let cliques=0;document.getElementById('logoSecreto').addEventListener('click',()=>{cliques++;if(cliques>=5)document.getElementById('segredo').classList.add('mostrar')});
-const fotos=[...document.querySelectorAll('.foto img')],lb=document.getElementById('lightbox'),lbImg=document.getElementById('lightboxImg');let atual=0;
-function abrir(i){atual=i;lbImg.src=fotos[atual].src;lbImg.alt=fotos[atual].alt;lb.classList.add('aberto');document.body.style.overflow='hidden'}function fechar(){lb.classList.remove('aberto');document.body.style.overflow=''}function mudar(dir){atual=(atual+dir+fotos.length)%fotos.length;lbImg.src=fotos[atual].src;lbImg.alt=fotos[atual].alt}
-fotos.forEach((img,i)=>img.parentElement.addEventListener('click',()=>abrir(i)));document.querySelector('.fechar').onclick=fechar;document.querySelector('.anterior').onclick=()=>mudar(-1);document.querySelector('.proxima').onclick=()=>mudar(1);lb.addEventListener('click',e=>{if(e.target===lb)fechar()});document.addEventListener('keydown',e=>{if(!lb.classList.contains('aberto'))return;if(e.key==='Escape')fechar();if(e.key==='ArrowLeft')mudar(-1);if(e.key==='ArrowRight')mudar(1)});
-</script>
-</body></html>
+    fotos.forEach((src, indice) => {
+      const botao = document.createElement('button');
+      botao.type = 'button';
+      botao.className = 'photo';
+      botao.setAttribute('aria-label', `Abrir foto ${indice + 1}`);
+      const imagem = document.createElement('img');
+      imagem.src = src;
+      imagem.alt = `Nossa foto ${indice + 1}`;
+      imagem.loading = 'lazy';
+      const legenda = document.createElement('span');
+      legenda.textContent = 'Uma lembrança nossa ♡';
+      botao.append(imagem, legenda);
+      botao.addEventListener('click', () => abrirFoto(indice));
+      galeria.appendChild(botao);
+    });
+
+    function abrirFoto(indice) {
+      fotoAtual = indice;
+      atualizarFoto();
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function atualizarFoto() {
+      fotoGrande.src = fotos[fotoAtual];
+      fotoGrande.style.transform = 'scale(1)';
+      fotoGrande.style.cursor = 'zoom-in';
+      ampliada = false;
+    }
+    function trocarFoto(direcao) {
+      fotoAtual = (fotoAtual + direcao + fotos.length) % fotos.length;
+      atualizarFoto();
+    }
+    function fecharFoto() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.querySelector('.close').addEventListener('click', fecharFoto);
+    document.querySelector('.prev').addEventListener('click', () => trocarFoto(-1));
+    document.querySelector('.next').addEventListener('click', () => trocarFoto(1));
+    fotoGrande.addEventListener('click', () => {
+      ampliada = !ampliada;
+      fotoGrande.style.transform = ampliada ? 'scale(1.5)' : 'scale(1)';
+      fotoGrande.style.cursor = ampliada ? 'zoom-out' : 'zoom-in';
+    });
+    lightbox.addEventListener('click', event => { if (event.target === lightbox) fecharFoto(); });
+    document.addEventListener('keydown', event => {
+      if (!lightbox.classList.contains('open')) return;
+      if (event.key === 'Escape') fecharFoto();
+      if (event.key === 'ArrowRight') trocarFoto(1);
+      if (event.key === 'ArrowLeft') trocarFoto(-1);
+    });
+    document.getElementById('formCarta').addEventListener('submit', event => {
+      event.preventDefault();
+      if (document.getElementById('senhaCarta').value === SENHA_CARTA) {
+        window.location.href = 'carta-secreta.html';
+      } else {
+        window.alert('Essa carta é só para quem guarda nossa história no coração. ❤️');
+        document.getElementById('senhaCarta').select();
+      }
+    });
+  </script>
+</body>
+</html>
